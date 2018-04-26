@@ -1,0 +1,44 @@
+﻿@model Condominio.Web.Models.ApartamentoViewModel
+@{   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-default">
+            <div class="box-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <div class="form-group">
+                                @Html.LabelFor(p => p.Numero)
+                                @Html.TextBoxFor(p => p.Numero, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Numero)
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="form-group">
+                                @Html.LabelFor(p => p.Bloco)
+                                @Html.TextBoxFor(p => p.Bloco, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Bloco)
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                @Html.LabelFor(p => p.ResponsavelId)
+                                @Html.DropDownListFor(p => p.ResponsavelId, Model.ListaResponsaveis, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ResponsavelId)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    @Html.Partial("~/Views/Shared/PartialActionBar.cshtml")
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

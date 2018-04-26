@@ -1,0 +1,16 @@
+﻿@model Condominio.Web.Models.ApartamentoViewModel
+
+<tbody>
+    @foreach (var apartamento in Model.Apartamentos)
+    {
+        <tr>
+            <td>@apartamento.Numero</td>
+            <td>@apartamento.Bloco</td>
+            <td>@apartamento.Responsavel.Nome</td>            
+            <td>
+                <a href="~/Apartamento/Edit/@apartamento.Id" title="Editar"><i class="fa fa-pencil"></i></a>
+                <a href="#" class="delete-apartamento" data-id="@apartamento.Id" title="Excluir"><i class="fa fa-trash"></i></a>
+            </td>
+        </tr>
+    }
+</tbody>
