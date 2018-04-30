@@ -9,24 +9,21 @@ using System.Threading.Tasks;
 
 namespace Condominio.Models
 {
-    [Table("Apartamentos")]
+    [Table("apartamentos")]
     public class Apartamento : BaseEntity, IEntity
-    {
-        [Key]
+    {    
         public int Id { get; set; }
-
-        [Required]
+        
         public int Numero { get; set; }
         
         [MaxLength(5)]
         public string Bloco { get; set; }
 
-        [Required]
-        [ForeignKey("Responsavel")]
-        public int ResponsavelId { get; set; }
-        public virtual Morador Responsavel { get; set; }
-
-        public virtual IList<Morador> Moradores { get; set; }
-
+        //[Required]
+        //[ForeignKey("Responsavel")]
+        //public int ResponsavelId { get; set; }
+        //public virtual Morador Responsavel { get; set; }
+            
+        public ICollection<Morador> Moradores { get; set; }
     }
 }

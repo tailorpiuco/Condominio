@@ -14,9 +14,9 @@ namespace Condominio.Web.App_Start
                 .Include("~/Content/css/font-awesome.min.css", new CssRewriteUrlTransformAbsolute())
                 .Include("~/Content/css/icheck/blue.min.css", new CssRewriteUrlTransformAbsolute())
                 .Include("~/Content/css/AdminLTE.css", new CssRewriteUrlTransformAbsolute())
-                //.Include("~/Content/alertifyjs/alertify.css", new CssRewriteUrlTransformAbsolute())
-                //.Include("~/Content/alertifyjs/themes/bootstrap.css", new CssRewriteUrlTransformAbsolute())
-                //.Include("~/Content/css/juris.css", new CssRewriteUrlTransformAbsolute())
+                .Include("~/Content/alertifyjs/alertify.min.css", new CssRewriteUrlTransformAbsolute())
+                .Include("~/Content/alertifyjs/themes/bootstrap.min.css", new CssRewriteUrlTransformAbsolute())
+                .Include("~/Content/css/condominio.css", new CssRewriteUrlTransformAbsolute())
                 .Include("~/Content/css/skins/skin-blue.css"));
 
             bundles.Add(new ScriptBundle("~/Bundles/js")
@@ -31,9 +31,15 @@ namespace Condominio.Web.App_Start
                 .Include("~/Content/js/plugins/validator.min.js")
                 .Include("~/Content/js/plugins/inputmask/jquery.inputmask.bundle.min.js")
                 .Include("~/Content/js/adminlte.js")
-                .Include("~/Content/js/init.js"));
-                //.Include("~/Scripts/alertify.js")
-                //.Include("~/Scripts/app/main.js"));
+                .Include("~/Content/js/init.js")
+                .Include("~/Scripts/alertify.min.js")
+                .Include("~/Content/js/main.js"));
+
+            bundles.Add(new ScriptBundle("~/Bundles/js/apartamento")
+                .Include("~/Content/js/apartamento.js"));
+
+            bundles.Add(new ScriptBundle("~/Bundles/js/morador")
+                .Include("~/Content/js/morador.js"));
 
 #if DEBUG
             BundleTable.EnableOptimizations = false;

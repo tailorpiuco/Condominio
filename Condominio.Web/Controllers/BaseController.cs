@@ -2,6 +2,7 @@
 using Juris.Web;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,7 +18,7 @@ namespace Condominio.Web.Controllers
 
             if (ViewBag.usuarioLogado == null)
             {
-                this.ViewBag.usuarioLogado = this.UsuarioLogado;
+                ViewBag.usuarioLogado = this.UsuarioLogado;
             }
         }        
 
@@ -26,6 +27,20 @@ namespace Condominio.Web.Controllers
             get
             {
                 return Session["Usuario"] as Usuario;
+            }
+        }
+
+        protected string RenderPartialView(string viewName, object model)
+        {
+            ViewData.Model = model;
+
+            using (StringWriter writer = new StringWriter())
+            {
+                ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, writer);
+                viewResult.View.Render(viewContext, writer);
+
+                return writer.GetStringBuilder().ToString();
             }
         }
     }

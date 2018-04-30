@@ -22,12 +22,15 @@ namespace Condominio.Business
 
         public virtual void Delete(int id)
         {
-            throw new NotImplementedException();
+            _repository.Delete(id);
+            _unitOfWork.Commit();
         }
 
         public virtual void Delete(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null) throw new ArgumentNullException("entity");
+            _repository.Delete(entity);
+            _unitOfWork.Commit();
         }
 
         public virtual IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)

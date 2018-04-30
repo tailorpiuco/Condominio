@@ -18,11 +18,11 @@ namespace Condominio.Web.Controllers
         {
             this.moradorService = moradorService;            
         }
-        
+                
         public ActionResult Index()
         {
             var model = new MoradorViewModel();
-            model.Moradores = moradorService.GetAll().ToList();
+            model.Moradores = moradorService.GetAll(m => m.Apartamento).ToList();
 
             return View(model);
         }
@@ -39,93 +39,55 @@ namespace Condominio.Web.Controllers
         {
             ViewBag.Title = "Adicionar Morador";
 
-            foreach (ModelState modelState in ViewData.ModelState.Values)
-            {
-                foreach (ModelError error in modelState.Errors)
-                {
-                    string s = error.ErrorMessage;
-                }
-            }
-
             if (ModelState.IsValid)
             {
                 moradorService.Insert(model);
-                RedirectToAction("Index");
+                return RedirectToAction("Index");
             }            
 
             return View("~/Views/Morador/Form.cshtml", model);
         }
-
-        // GET: Morador/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Morador/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Morador/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Morador/Edit/5
+        
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View();
+            var entity = moradorService.FindBy(m => m.Id == id).SingleOrDefault();
+            ViewBag.Title = "Editar Morador";
+            return View("~/Views/Morador/Form.cshtml", entity);
         }
-
-        // POST: Morador/Edit/5
+        
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Morador model)
+        {
+            if (ModelState.IsValid)
+            {
+                moradorService.Update(model);
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Title = "Editar Morador";
+
+            return View("~/Views/Morador/Form.cshtml", model);
+        }
+        
+        [HttpPost]
+        public JsonResult Delete(int id)
         {
             try
             {
-                // TODO: Add update logic here
+                moradorService.Delete(id);
 
-                return RedirectToAction("Index");
+                var model = new MoradorViewModel
+                {
+                    Moradores = moradorService.GetAll().ToList()
+                };
+
+                return Json(new { sucesso = true, html = RenderPartialView("~/Views/Morador/Tabela.cshtml", model) });
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return Json(new { sucesso = false, mensagem = ex.Message });
             }
-        }
-
-        // GET: Morador/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Morador/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        }                
     }
 }

@@ -1,18 +1,16 @@
 ﻿@model Condominio.Web.Models.MoradorViewModel
 
-<tbody>
-    @foreach (var morador in Model.Moradores)
-    {
-        <tr>
-            <td>@morador.Nome</td>
-            <td>@morador.Email</td>
-            <td>@morador.Telefone</td>
-            <td>@(morador.Apartamento != null ? morador.Apartamento.Bloco : "")</td>
-            <td>@(morador.Apartamento != null ? morador.Apartamento.Numero.ToString() : "")</td>
-            <td>
-                <a href="~/Morador/Edit/@morador.Id" title="Editar"><i class="fa fa-pencil"></i></a>
-                <a href="#" class="delete-morador" data-id="@morador.Id" title="Excluir"><i class="fa fa-trash"></i></a>
-            </td>
-        </tr>
-    }
-</tbody>
+@foreach (var morador in Model.Moradores)
+{
+    <tr>
+        <td>@morador.Nome</td>
+        <td>@morador.Email</td>
+        <td>@morador.Telefone</td>
+        <td>@(morador.Apartamento != null ? morador.Apartamento.Bloco : "")</td>
+        <td>@(morador.Apartamento != null ? morador.Apartamento.Numero.ToString() : "")</td>
+        <td>
+            <a href="~/Morador/Edit/@morador.Id" title="Editar"><i class="fa fa-pencil"></i></a>
+            <a href="#" class="delete-morador" data-id="@morador.Id" title="Excluir"><i class="fa fa-trash"></i></a>
+        </td>
+    </tr>
+}

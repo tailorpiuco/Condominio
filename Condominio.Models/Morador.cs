@@ -9,35 +9,27 @@ using System.Threading.Tasks;
 
 namespace Condominio.Models
 {
-    [Table("Moradores")]
+    [Table("moradores")]
     public class Morador : BaseEntity, IEntity
     {
-        [Key]
-        public int Id { get; set; }
+        [Key]        
+        public int Id { get; set; }        
 
-        [Required]
-        [MaxLength(100)]
-        public string Nome { get; set; }
+        public string Nome { get; set; }       
         
         public DateTime DataNascimento { get; set; }
-
-        [Required]
-        [MaxLength(20)]
+        
         [DataType(DataType.PhoneNumber)]
         public string Telefone { get; set; }
 
-        [Required]
-        [MaxLength(14)]
         public string CPF { get; set; }
 
-        [Required]
-        [MaxLength(50)]
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }        
+        public string Email { get; set; }
+        
+        public int? ApartamentoId { get; set; }    
+        public Apartamento Apartamento { get; set; }
 
-        [ForeignKey("Apartamento")]
-        public int? ApartamentoId { get; set; }
-
-        public virtual Apartamento Apartamento { get; set; }
+        //public virtual ICollection<Apartamento> ApartamentosAdministrados { get; set; }        
     }
 }
