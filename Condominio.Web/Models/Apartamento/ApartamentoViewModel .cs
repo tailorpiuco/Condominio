@@ -11,8 +11,7 @@ namespace Condominio.Web.Models
     public class ApartamentoViewModel
     {
         public ApartamentoViewModel()
-        {
-            this.Apartamentos = new List<Apartamento>();
+        {            
             this.Moradores = new List<Morador>();
         }
 
@@ -23,31 +22,30 @@ namespace Condominio.Web.Models
         public int Numero { get; set; }
 
         [MaxLength(5)]        
-        public string Bloco { get; set; }
-        
-        [Required]
-        [Display(Name = "Responsável")]
-        [Range(1, int.MaxValue, ErrorMessage = "O campo Responsável é obrigatório.")]
-        public int ResponsavelId { get; set; }
+        public string Bloco { get; set; }                
 
-        public IList<SelectListItem> ListaResponsaveis
+        [Required]
+        public ICollection<Morador> Moradores { get; set; }    
+        public ICollection<Morador> TodosMoradores { get; set; }
+
+        public IList<SelectListItem> MoradoresDropDownList
         {
             get
             {
                 var lista = new List<SelectListItem>();
-                lista.Add(new SelectListItem { Value = "0", Text = "Selecione" });
+                lista.Add(new SelectListItem { Text = "Selecione", Value = "0" });
 
-                foreach(var m in this.Moradores)
+                foreach(var m in TodosMoradores)
                 {
-                    lista.Add(new SelectListItem { Text = m.Nome, Value = m.Id.ToString() });
+                    lista.Add(new SelectListItem
+                    {
+                        Text = m.Nome,
+                        Value = m.Id.ToString()
+                    });
                 }
 
                 return lista;
             }
         }
-
-        public IList<Morador> Moradores { get; set; }
-
-        public IList<Apartamento> Apartamentos { get; set; }
     }
 }

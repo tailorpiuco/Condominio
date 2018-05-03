@@ -12,10 +12,11 @@ namespace Condominio.Business.Interfaces
     {
         void Delete(int id);
         void Delete(T entity);
-        void Insert(T entity);
+        T Insert(T entity);
         void Update(T entity);
 
         IEnumerable<T> GetAll(params Expression<Func<T, object>>[] includes);
-        IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate);                        
+        IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate);
+        IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes);
     }
 }

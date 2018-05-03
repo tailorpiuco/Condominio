@@ -13,16 +13,17 @@ namespace Condominio.Models
     public class Apartamento : BaseEntity, IEntity
     {    
         public int Id { get; set; }
-        
+
+        [Required]
+        [Display(Name = "Número")]
         public int Numero { get; set; }
         
         [MaxLength(5)]
         public string Bloco { get; set; }
 
         //[Required]
-        //[ForeignKey("Responsavel")]
         //public int ResponsavelId { get; set; }
-        //public virtual Morador Responsavel { get; set; }
+        //public Morador Responsavel { get; set; }
             
         public ICollection<Morador> Moradores { get; set; }
     }

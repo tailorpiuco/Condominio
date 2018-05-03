@@ -9,6 +9,6 @@ namespace Condominio.Business.Interfaces
 {
     public interface IMoradorService : IEntityService<Morador>
     {
-        //IEnumerable<Morador> GetAll();
+        void RemoveMoradoresApartamento(int idApartamento);        
     }
 }

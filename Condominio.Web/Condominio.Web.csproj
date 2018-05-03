@@ -180,6 +180,7 @@
     <Content Include="Views\Apartamento\Form.cshtml" />
     <Content Include="Views\Apartamento\Index.cshtml" />
     <Content Include="Views\Apartamento\Tabela.cshtml" />
+    <Content Include="Views\Apartamento\MoradoresPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -195,7 +196,7 @@
     <Compile Include="Controllers\MoradorController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
-    <Compile Include="Models\ApartamentoViewModel .cs" />
+    <Compile Include="Models\Apartamento\ApartamentoViewModel .cs" />
     <Compile Include="Models\MoradorViewModel.cs" />
     <Compile Include="Models\UsuarioViewModel.cs" />
     <Compile Include="Modules\EFModule.cs" />

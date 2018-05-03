@@ -1,11 +1,11 @@
-﻿@model Condominio.Web.Models.ApartamentoViewModel
+﻿@model IList<Condominio.Models.Apartamento>
 
-@foreach (var apartamento in Model.Apartamentos)
+@foreach (var apartamento in Model)
 {
     <tr>
         <td>@apartamento.Numero</td>
         <td>@apartamento.Bloco</td>
-        <td>@*@apartamento.Responsavel.Nome*@</td>            
+        <td>@apartamento.Moradores.SingleOrDefault(m => m.Responsavel).Nome</td>            
         <td>
             <a href="~/Apartamento/Edit/@apartamento.Id" title="Editar"><i class="fa fa-pencil"></i></a>
             <a href="#" class="delete-apartamento" data-id="@apartamento.Id" title="Excluir"><i class="fa fa-trash"></i></a>

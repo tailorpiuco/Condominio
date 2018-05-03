@@ -12,6 +12,11 @@ namespace Condominio.Models
     [Table("moradores")]
     public class Morador : BaseEntity, IEntity
     {
+        public Morador()
+        {
+            this.Responsavel = false;
+        }
+
         [Key]        
         public int Id { get; set; }        
 
@@ -29,6 +34,8 @@ namespace Condominio.Models
         
         public int? ApartamentoId { get; set; }    
         public Apartamento Apartamento { get; set; }
+
+        public bool Responsavel { get; set; }
 
         //public virtual ICollection<Apartamento> ApartamentosAdministrados { get; set; }        
     }

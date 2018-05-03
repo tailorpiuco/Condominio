@@ -1,5 +1,6 @@
-﻿@model Condominio.Web.Models.ApartamentoViewModel
-@{   
+﻿@using System.Web.Optimization
+@model Condominio.Web.Models.ApartamentoViewModel
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -26,19 +27,40 @@
                                 @Html.ValidationMessageFor(model => model.Bloco)
                             </div>
                         </div>
+                        @*<div class="col-xs-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(p => p.ResponsavelId)
+                                    @Html.DropDownListFor(p => p.ResponsavelId, Model.ListaResponsaveis, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ResponsavelId)
+                                </div>
+                            </div>*@
+                        @*</div>
+
+                            <div class="row">*@
                         <div class="col-xs-6">
-                            <div class="form-group">
-                                @Html.LabelFor(p => p.ResponsavelId)
-                                @Html.DropDownListFor(p => p.ResponsavelId, Model.ListaResponsaveis, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.ResponsavelId)
-                            </div>
+                            <fieldset>
+                                <legend>Moradores</legend>
+                                <table class="table table-stripped table-moradores">
+                                    <thead>
+                                        <tr>
+                                            <th width="80%">Nome</th>
+                                            <th width="10%" align="center">Responsável</th>
+                                            <th width="10%">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    @Html.Partial("~/Views/Apartamento/MoradoresPartial.cshtml", Model)
+                                </table>
+                                @Html.ValidationMessageFor(m => m.Moradores)                                
+                            </fieldset>
                         </div>
                     </div>
-                    
+
                     @Html.Partial("~/Views/Shared/PartialActionBar.cshtml")
                 }
             </div>
         </div>
     </div>
 </div>
-
+@section ViewSpecificJavascript {
+    @Scripts.Render("~/Bundles/js/apartamento")
+}

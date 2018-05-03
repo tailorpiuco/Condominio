@@ -1,0 +1,30 @@
+﻿@model Condominio.Web.Models.ApartamentoViewModel
+
+<tbody id="Moradores">
+    @foreach (var m in Model.Moradores.OrderBy(m => m.Nome))
+    {
+        <tr>
+            <td>@m.Nome</td>
+            <td align="center">
+                @Html.RadioButton("Responsavel", m.Id, m.Responsavel)                
+            </td>
+            <td>
+                <a href="#" class="btn btn-default delete-morador" data-id="@m.Id">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+    }
+</tbody>
+<tfoot>
+    <tr>
+        <td colspan="2">
+            @Html.DropDownList("ListaMoradores", Model.MoradoresDropDownList, new { @class = "form-control" })
+        </td>
+        <td>
+            <a href="#" class="btn btn-default add-morador">
+                <i class="fa fa-plus"></i>
+            </a>
+        </td>
+    </tr>
+</tfoot>

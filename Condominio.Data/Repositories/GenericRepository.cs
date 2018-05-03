@@ -31,7 +31,7 @@ namespace Condominio.Data.Repositories
 
         public IEnumerable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate, params System.Linq.Expressions.Expression<Func<T, object>>[] includes)
         {
-            return _dbSet.Where(predicate).AsQueryable();
+            return _dbSet.IncludeMultiple(includes).Where(predicate).AsQueryable();
         }
 
         public IEnumerable<T> GetAll(params System.Linq.Expressions.Expression<Func<T, object>>[] includes)

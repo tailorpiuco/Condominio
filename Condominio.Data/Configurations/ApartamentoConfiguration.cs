@@ -20,7 +20,7 @@ namespace Condominio.Data.Configurations
                 .IsRequired();
 
             this.HasRequired(p => p.Moradores)
-                .WithOptional();
+                .WithOptional();                        
         }
     }
 }

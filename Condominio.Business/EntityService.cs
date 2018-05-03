@@ -38,20 +38,27 @@ namespace Condominio.Business
             return _repository.FindBy(predicate);
         }
 
+        public IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
+        {
+            return _repository.FindBy(predicate, includes);
+        }
+
         public virtual IEnumerable<T> GetAll(params Expression<Func<T, object>>[] includes)
         {
             return _repository.GetAll(includes);
         }
 
-        public virtual void Insert(T entity)
+        public virtual T Insert(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
 
-            _repository.Insert(entity);
+            entity = _repository.Insert(entity);
             _unitOfWork.Commit();
+
+            return entity;
         }
 
         public virtual void Update(T entity)
