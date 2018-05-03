@@ -4,6 +4,7 @@ using Condominio.Web.Models;
 using Condominio.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Condominio.Business.Interfaces;
+using System.Web.Security;
 
 namespace Condominio.Web.Controllers
 {
@@ -50,7 +51,22 @@ namespace Condominio.Web.Controllers
             }
         }
 
-        public SignInStatus SignInAsync(string login, string senha)
+        [AllowAnonymous]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+
+            return RedirectToAction("Login");
+        }
+
+        public ActionResult NaoAutorizado()
+        {
+            return View();
+        }
+         
+
+        private SignInStatus SignInAsync(string login, string senha)
         {
             Usuario usuario = null;
 

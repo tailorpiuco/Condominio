@@ -35,33 +35,23 @@ namespace Juris.Web
                 if (filterContext.HttpContext.Request.IsAjaxRequest())
                 {
                     filterContext.HttpContext.Response.Write(new RedirectResult("~/Conta/Login").Url);
-
                     filterContext.HttpContext.Response.End();
                 }
                 else
                 {
-                    var query = filterContext.HttpContext.Request.Url.PathAndQuery;
-                    if (query != "/")
-                        filterContext.Result = new RedirectResult("~/Conta/Login");
-                    else
-                        filterContext.HttpContext.Response.Redirect("~/Conta/Login");
+                    filterContext.HttpContext.Response.Redirect("~/Conta/Login");
                 }
             }
             else
             {
                 if (filterContext.HttpContext.Request.IsAjaxRequest())
                 {
-                    filterContext.HttpContext.Response.Write(new RedirectResult("~/Conta/NaoAutorizado").Url);
-
+                    filterContext.HttpContext.Response.Write(new RedirectResult("~/Conta/Login").Url);
                     filterContext.HttpContext.Response.End();
                 }
                 else
                 {
-                    var query = filterContext.HttpContext.Request.Url.PathAndQuery;
-                    if (query != "/")
-                        filterContext.Result = new RedirectResult("~/Conta/NaoAutorizado");
-                    else
-                        filterContext.HttpContext.Response.Redirect("~/Conta/NaoAutorizado");
+                    filterContext.HttpContext.Response.Redirect("~/Conta/Login");
                 }
             }
 
