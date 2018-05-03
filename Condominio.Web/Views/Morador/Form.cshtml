@@ -1,6 +1,7 @@
 ﻿@model Condominio.Models.Morador
 @{   
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.RedirectUrl = Url.Content("~/Morador");
 }
 
 <div class="row">
@@ -49,9 +50,10 @@
                                 <div class="input-group date">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
-                                    </div>                                    
+                                    </div>
                                     @Html.TextBoxFor(p => p.DataNascimento, new { @class = "form-control pull-right datepicker" })
                                 </div>
+                                @Html.ValidationMessageFor(model => model.DataNascimento)
                             </div>
                         </div>
                     </div>

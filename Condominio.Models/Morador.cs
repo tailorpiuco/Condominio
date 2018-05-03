@@ -20,15 +20,22 @@ namespace Condominio.Models
         [Key]        
         public int Id { get; set; }        
 
+        [Required]
         public string Nome { get; set; }       
         
+        [Required]
+        [Display(Name = "Data Nascimento")]
         public DateTime DataNascimento { get; set; }
         
+        [Required]
         [DataType(DataType.PhoneNumber)]
         public string Telefone { get; set; }
 
+        [Required]
         public string CPF { get; set; }
 
+        [Required]
+        [Display(Name = "E-mail")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         
