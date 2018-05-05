@@ -1,5 +1,28 @@
 ﻿$(function ($, condominio) {
 
+    var indiceColunas = {
+        "numero": 0,
+        "bloco": 1,
+        "responsavel": 2,        
+        "acoes": 3
+    };
+
+    function initDataTables() {
+        var configuracao = condominio.dataTablesDefaults({
+            columns: [
+                { name: "numero", sortable: true, "width": "15%" },
+                { name: "bloco", sortable: true, "width": "15%" },
+                { name: "responsavel", sortable: true, "width": "60%" },                
+                { name: "acoes", sortable: false, "width": "10px" },
+            ],
+            order: [[indiceColunas.numero, "asc"]],
+        });
+
+        return $("#tabela-apartamentos").dataTable(configuracao);
+    }
+
+    var datatable = initDataTables();
+
     $(document).on('click', '.delete-apartamento', function (e) {
         e.preventDefault();
 
@@ -67,6 +90,10 @@
                 condominio.alerts.erro(response.mensagem);                  
             }
         });
+    });
+
+    $(document).on('keyup', 'input[name=search]', function () {
+        datatable.api().search(this.value).draw();
     });
 
 }(jQuery, condominio));

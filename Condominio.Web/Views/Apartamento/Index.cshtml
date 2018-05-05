@@ -1,7 +1,7 @@
 ﻿@using System.Web.Optimization
 @{
-    ViewBag.Title = "Index";
-    ViewBag.Description = "Apartamentos";
+    ViewBag.Title = "Apartamentos";
+    ViewBag.Description = "Listagem";
 }
 
 @model IList<Condominio.Models.Apartamento>
@@ -9,9 +9,20 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="box box-default">
-            <div class="box-body">
-                <a class="btn btn-default" href="~/Apartamento/Add">Adicionar Apartamento</a>
-                <table class="table table-striped">
+            <div class="box-body">                
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="form-group">
+                            <a class="btn btn-default" href="~/Apartamento/Add">Adicionar Apartamento</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group">
+                            <input type="search" name="search" class="form-control pull-right" placeholder="Buscar ..." />
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped" id="tabela-apartamentos">
                     <thead>
                         <tr>
                             <th width="15%">Número</th>

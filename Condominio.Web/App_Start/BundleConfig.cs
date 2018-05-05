@@ -17,7 +17,8 @@ namespace Condominio.Web.App_Start
                 .Include("~/Content/alertifyjs/alertify.min.css", new CssRewriteUrlTransformAbsolute())
                 .Include("~/Content/alertifyjs/themes/bootstrap.min.css", new CssRewriteUrlTransformAbsolute())
                 .Include("~/Content/css/condominio.css", new CssRewriteUrlTransformAbsolute())
-                .Include("~/Content/css/skins/skin-blue.css"));
+                .Include("~/Content/css/skins/skin-blue.css")
+                .Include("~/Content/DataTables/css/dataTables.bootstrap.css"));
 
             bundles.Add(new ScriptBundle("~/Bundles/js")
                 .Include("~/Content/js/plugins/jquery/jquery-3.3.1.min.js")
@@ -36,10 +37,15 @@ namespace Condominio.Web.App_Start
                 .Include("~/Content/js/main.js"));
 
             bundles.Add(new ScriptBundle("~/Bundles/js/apartamento")
+                .Include("~/Scripts/DataTables/jquery.dataTables.js")
+                .Include("~/Scripts/DataTables/dataTables.bootstrap.js")
                 .Include("~/Content/js/apartamento.js"));
 
-            bundles.Add(new ScriptBundle("~/Bundles/js/morador")
-                .Include("~/Content/js/morador.js"));
+            bundles.Add(new ScriptBundle("~/Bundles/js/morador")                
+                .Include("~/Scripts/DataTables/jquery.dataTables.js")
+                .Include("~/Scripts/DataTables/dataTables.bootstrap.js")
+                .Include("~/Content/js/morador.js"));            
+                
 
 #if DEBUG
             BundleTable.EnableOptimizations = false;

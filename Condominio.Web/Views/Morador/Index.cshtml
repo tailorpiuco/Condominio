@@ -1,7 +1,7 @@
 ﻿@using System.Web.Optimization
 @{
-    ViewBag.Title = "Index";
-    ViewBag.Description = "Moradores";
+    ViewBag.Title = "Moradores";
+    ViewBag.Description = "Listagem";
 }
 
 @model Condominio.Web.Models.MoradorViewModel
@@ -10,8 +10,19 @@
     <div class="col-sm-12">
         <div class="box box-default">
             <div class="box-body">
-                <a class="btn btn-default" href="~/Morador/Add">Adicionar Morador</a>
-                <table class="table table-striped">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="form-group">
+                            <a class="btn btn-default" href="~/Morador/Add">Adicionar Morador</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <div class="form-group">                            
+                            <input type="search" name="search" class="form-control pull-right" placeholder="Buscar ..." />
+                        </div>
+                    </div>
+                </div>                                
+                <table class="table table-striped" id="tabela-moradores">
                     <thead>
                         <tr>
                             <th width="25%">Nome</th>

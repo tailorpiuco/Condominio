@@ -96,5 +96,11 @@
       <DependentUpon>201804300057355_v1.0.1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ScriptsDB\condominio_apartamentos.sql" />
+    <Content Include="ScriptsDB\condominio_moradores.sql" />
+    <Content Include="ScriptsDB\condominio_usuario.sql" />
+    <Content Include="ScriptsDB\condominio___migrationhistory.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
